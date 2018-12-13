@@ -23,8 +23,14 @@ namespace StartTests
     public class Test1
     {
 
-        Assembly assem = Assembly.LoadFrom( @"C:\Users\guest2\Documents\Visual Studio 2015\TestProject\PassportForm1\PassportForm1\bin\Debug\PassportForm1.exe");
+        Assembly assem =
+            Assembly.LoadFrom(
+                @"C:\Users\guest2\Documents\Visual Studio 2015\TestProject\PassportForm1\PassportForm1\bin\Debug\PassportForm1.exe");
+
         Form formPassport;
+        ITest itestFormPassport;
+        ITest itestFormINN;
+
         public Test1()
         {
         }
@@ -41,8 +47,8 @@ namespace StartTests
         {
             StartINNForm();
         }
-    
-     
+
+
 
 
         #region Additional test attributes
@@ -83,11 +89,54 @@ namespace StartTests
         public void StartPassportForm()
         {
 
+            ITest calledPassport;
+            calledPassport = getFormPassportITest();
+            calledPassport.doTest();
+
+
+        }
+
+        public void StartINNForm()
+        {
+
+            ITest callediNN;
+            callediNN = getFormInnITest();
+            callediNN.doTest();
+
+        }
+        public ITest getFormInnITest()
+        {
 
             Assembly assem =
                 Assembly.LoadFrom(
+                    @"C:\Users\guest2\Documents\Visual Studio 2015\TestProject\INNForm\INNForm\bin\Debug\INNForm.exe");
+
+            Type[] typess = assem.GetTypes();
+            foreach (var item in typess)
+            {
+                var iTestInterfaseType = item.GetInterface(typeof(ITest).ToString());
+                if (iTestInterfaseType != null)
+                {
+                    formPassport = (Form)Activator.CreateInstance(item);
+
+
+                    itestFormINN = formPassport as ITest;
+
+                }
+
+
+            }
+
+            return itestFormINN;
+        }
+
+        public ITest getFormPassportITest()
+        {
+            
+            Assembly assem =
+                Assembly.LoadFrom(
                     @"C:\Users\guest2\Documents\Visual Studio 2015\TestProject\PassportForm1\PassportForm1\bin\Debug\PassportForm1.exe");
-            Form formPassport;
+          
             Type[] typess = assem.GetTypes();
             foreach (var item in typess)
             {
@@ -97,49 +146,14 @@ namespace StartTests
                     formPassport = (Form) Activator.CreateInstance(item);
 
 
-                    var itestFormPassport = formPassport as ITest;
-                    if (itestFormPassport != null)
-                    {
-
-                        itestFormPassport.doTest();
-
-                    }
-
-
+                 itestFormPassport = formPassport as ITest;
+                     
                 }
+
+
             }
+
+            return itestFormPassport;
         }
-
-        public void StartINNForm()
-        {
-
-            Assembly assem =
-                Assembly.LoadFrom(
-                    @"C:\Users\guest2\Documents\Visual Studio 2015\TestProject\INNForm\INNForm\bin\Debug\INNForm.exe");
-            Form formINN;
-            Type[] typess = assem.GetTypes();
-            foreach (var item in typess)
-            {
-                var iTestInterfaseType = item.GetInterface(typeof(ITest).ToString());
-                if (iTestInterfaseType != null)
-                {
-                    formINN = (Form) Activator.CreateInstance(item);
-  
-                    var itestFormInn = formINN as ITest;
-                    if (itestFormInn != null)
-                    {
-                         
-                        itestFormInn.doTest();
-
-                         
-
-                    }
-
-
-                }
-            }
-        }
-
-        
     }
 }
