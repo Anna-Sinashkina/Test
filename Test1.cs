@@ -7,7 +7,6 @@ using System.Drawing;
 using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UITesting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Windows.Forms;
 using Microsoft.VisualStudio.TestTools.UITest.Extension;
 using Keyboard = Microsoft.VisualStudio.TestTools.UITesting.Keyboard;
 using PassportForm1;
@@ -46,6 +45,11 @@ namespace StartTests
         public void TestINN()
         {
             StartINNForm();
+        }
+        [TestMethod]
+ public void PassportModal()
+        {
+            StartModalForms();
         }
 
 
@@ -104,6 +108,14 @@ namespace StartTests
             callediNN.doTest();
 
         }
+
+        public void StartModalForms()
+        { 
+            ITest calledPassport;
+            calledPassport = getFormPassportITest();
+            calledPassport.dotestModal();
+        }
+
         public ITest getFormInnITest()
         {
 

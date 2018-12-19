@@ -59,26 +59,21 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\INNForm\INNForm\INNForm.csproj">
+    <ProjectReference Include="..\INNForm\INNForm.csproj">
       <Project>{22b5e067-ddd1-49aa-b535-f0ef7abd05d3}</Project>
       <Name>INNForm</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Interface\Interface\Interface.csproj">
+    <ProjectReference Include="..\Interface\Interface.csproj">
       <Project>{0690f2bc-cfd6-4005-91b8-a64e9d2f44a3}</Project>
       <Name>Interface</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\PassportForm1\PassportForm1\PassportForm1.csproj">
+    <ProjectReference Include="..\PassportForm1\PassportForm1.csproj">
       <Project>{d0d41489-d566-4c82-af89-fe980fddca6c}</Project>
       <Name>PassportForm1</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="PassportForm1.exe" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="WebTest1.webtest">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
